@@ -1,105 +1,69 @@
 const CLUES = {
   "1": {
-    "title": "Help Ma plant some onions.",
-    "location": "Garden",
-    "hint": "Check the garden.",
-    "zone": {
-      "x": 24,
-      "y": 57
-    }
+    "title": "Get ready for an adventure.",
+    "location": "Camper",
+    "hint": "",
+    "zone": { "x": 24, "y": 57 }
   },
   "2": {
-    "title": "Help Ma water the flowers.",
-    "location": "Hose",
-    "hint": "Check under the watering can by the hose.",
-    "zone": {
-      "x": 45,
-      "y": 60
-    }
+    "title": "Trim the broken limbs.",
+    "location": "Tree near the basketball hoop",
+    "hint": "",
+    "zone": { "x": 45, "y": 60 }
   },
   "3": {
-    "title": "Help Ma entertain Chris.",
-    "location": "Christopher Fight",
-    "hint": "Go grab a sword from the playset and fight Christopher.",
-    "subtitle": "Grab something from the playset.",
-    "zone": {
-      "x": 49,
-      "y": 47
-    }
+    "title": "The trash needs to be burned.",
+    "location": "The old furnace",
+    "hint": "",
+    "zone": { "x": 49, "y": 47 }
   },
   "4": {
-    "title": "Help Ma fix the tv channels.",
-    "location": "Satellite tower",
-    "hint": "Go to the garage and find a satellite tower.",
-    "subtitle": "Check the tower.",
-    "zone": {
-      "x": 40,
-      "y": 39
-    }
+    "title": "The birds are thirsty.",
+    "location": "Bird bath",
+    "hint": "",
+    "zone": { "x": 40, "y": 39 }
   },
   "5": {
-    "title": "Get dressed for Easter!",
-    "location": "Garage dresser",
-    "hint": "Go to the garage and check the dresser.",
-    "subtitle": "There might be something in the garage.",
-    "zone": {
-      "x": 37,
-      "y": 42
-    }
+    "title": "The cistern has run dry.",
+    "location": "The cistern by the bush",
+    "hint": "",
+    "zone": { "x": 37, "y": 42 }
   },
   "6": {
-    "title": "Get the heavy duty sled to prepare for snow.",
-    "location": "Old Toboggan",
-    "hint": "Go to the old chicken house down the hill from the garden and look around for a toboggan.",
-    "zone": {
-      "x": 5,
-      "y": 72
-    }
+    "title": "Pick up walnuts.",
+    "location": "Walnut tree by fence",
+    "hint": "",
+    "zone": { "x": 5, "y": 72 }
   },
   "7": {
-    "title": "Check how much rain we got last night.",
-    "location": "Rain gauge",
-    "hint": "Go to the rain gauge toward the pond.",
-    "zone": {
-      "x": 57,
-      "y": 58
-    }
+    "title": "Make a peep house.",
+    "location": "The brooderhouse",
+    "hint": "",
+    "zone": { "x": 57, "y": 58 }
   },
   "8": {
-    "title": "Go feed the barn kitties.",
-    "location": "Barn",
-    "hint": "Go inside the old barn and look through the missing board.",
-    "zone": {
-      "x": 65,
-      "y": 46
-    }
+    "title": "The diesel needs filling.",
+    "location": "Trailler",
+    "hint": "",
+    "zone": { "x": 65, "y": 46 }
   },
   "9": {
-    "title": "Help Ma fix her tweety friend camera.",
-    "location": "Bird feeder",
-    "hint": "Go to the bird feeders and open the one with a camera.",
-    "zone": {
-      "x": 45,
-      "y": 73
-    }
+    "title": "The tub needs flowers.",
+    "location": "Hostas",
+    "hint": "",
+    "zone": { "x": 45, "y": 73 }
   },
   "10": {
-    "title": "Help Ma pick some apples.",
-    "location": "Orchard",
-    "hint": "Go look through the orchard.",
-    "zone": {
-      "x": 38,
-      "y": 18
-    }
+    "title": "The lilacs need spraying.",
+    "location": "Dining room lilacs",
+    "hint": "",
+    "zone": { "x": 38, "y": 18 }
   },
   "11": {
-    "title": "FINAL EGG: Go fix the dock!",
-    "location": "Dock",
-    "hint": "Go to the pond and look around the dock for the final egg.",
-    "zone": {
-      "x": 74,
-      "y": 88
-    }
+    "title": "FINAL CHORE: Restock the fridge.",
+    "location": "Fridge",
+    "hint": "",
+    "zone": { "x": 74, "y": 88 }
   }
 };
 

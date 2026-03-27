@@ -1,5 +1,5 @@
 const COOLDOWN_MINUTES = 10;
-const STORAGE_PREFIX = "easter-hunt-supabase-progress-v3";
+const STORAGE_PREFIX = "easter-hunt-supabase-progress-game2";
 const ADMIN_PASSCODE = "bunnyboss";
 const MAP_ENABLED_KEY = `${STORAGE_PREFIX}-map-enabled`;
 const SHARED_SETTINGS_TEAM_ID = "__settings__";
@@ -63,7 +63,7 @@ async function pushSharedSettings(){
     last_updated_at: Date.now(),
     map_enabled: !!mapEnabled
   };
-  await supabaseClient.from("team_progress").upsert(payload, { onConflict: "team_id" });
+  await supabaseClient.from("team_progress_game2").upsert(payload, { onConflict: "team_id" });
 }
 
 function updateAdminMapButton(){
@@ -332,7 +332,7 @@ async function initSupabase(){
 
 async function fetchLeaderboard(){
   if (!supabaseReady) return;
-  const { data, error } = await supabaseClient.from("leaderboard").select("*");
+  const { data, error } = await supabaseClient.from("leaderboard_game2").select("*");
   if (error){
     console.error(error);
     supabaseReady = false;
@@ -352,7 +352,7 @@ async function fetchLeaderboard(){
 
 async function fetchAllRemoteProgress(){
   if (!supabaseReady) return;
-  const { data, error } = await supabaseClient.from("team_progress").select("*");
+  const { data, error } = await supabaseClient.from("team_progress_game2").select("*");
   if (error){
     console.error(error);
     return;
@@ -368,7 +368,7 @@ async function fetchAllRemoteProgress(){
 function subscribeLeaderboard(){
   if (!supabaseReady) return;
   supabaseClient.channel("leaderboard-live")
-    .on("postgres_changes", { event: "*", schema: "public", table: "leaderboard" }, payload => {
+    .on("postgres_changes", { event: "*", schema: "public", table: "leaderboard_game2" }, payload => {
       const row = payload.new || payload.old;
       if (!row || !row.team_id) return;
       if (payload.eventType === "DELETE") delete liveBoardCache[row.team_id];
@@ -386,7 +386,7 @@ function maybeRefreshGateSelection(){
 function subscribeTeamProgress(){
   if (!supabaseReady) return;
   supabaseClient.channel("team-progress-live")
-    .on("postgres_changes", { event: "*", schema: "public", table: "team_progress" }, async payload => {
+    .on("postgres_changes", { event: "*", schema: "public", table: "team_progress_game2" }, async payload => {
       const row = payload.new || payload.old;
       if (!row || !row.team_id) return;
 
@@ -420,7 +420,7 @@ async function loadRemoteProgress(team){
   if (!supabaseReady) return null;
   const cached = cachedRemoteProgress(team);
   if (cached) return cached;
-  const { data, error } = await supabaseClient.from("team_progress").select("*").eq("team_id", team).maybeSingle();
+  const { data, error } = await supabaseClient.from("team_progress_game2").select("*").eq("team_id", team).maybeSingle();
   if (error){
     console.error(error);
     return null;
@@ -464,7 +464,7 @@ async function pushRemoteProgress(){
     started_at: state.startedAt,
     last_updated_at: state.lastUpdatedAt
   };
-  const { error } = await supabaseClient.from("team_progress").upsert(payload, { onConflict: "team_id" });
+  const { error } = await supabaseClient.from("team_progress_game2").upsert(payload, { onConflict: "team_id" });
   if (error) console.error(error);
 }
 
@@ -478,7 +478,7 @@ async function pushLeaderboard(){
     finished: state.finished,
     last_updated_at: state.lastUpdatedAt
   };
-  const { error } = await supabaseClient.from("leaderboard").upsert(payload, { onConflict: "team_id" });
+  const { error } = await supabaseClient.from("leaderboard_game2").upsert(payload, { onConflict: "team_id" });
   if (error) console.error(error);
 }
 
@@ -1149,7 +1149,7 @@ async function adminSaveTeamName(){
   localStorage.setItem(leaderboardKey(), JSON.stringify(localBoard));
 
   if (supabaseReady){
-    await supabaseClient.from("team_progress").upsert({
+    await supabaseClient.from("team_progress_game2").upsert({
       team_id: team,
       team_name: newName,
       progress_index: targetState.progressIndex,
@@ -1162,7 +1162,7 @@ async function adminSaveTeamName(){
       last_updated_at: targetState.lastUpdatedAt
     }, { onConflict: "team_id" });
 
-    await supabaseClient.from("leaderboard").upsert({
+    await supabaseClient.from("leaderboard_game2").upsert({
       team_id: team,
       team_name: newName,
       found: targetState.completed.length,
@@ -1195,7 +1195,7 @@ async function adminResetTeam(){
   localStorage.setItem(leaderboardKey(), JSON.stringify(localBoard));
 
   if (supabaseReady){
-    await supabaseClient.from("team_progress").upsert({
+    await supabaseClient.from("team_progress_game2").upsert({
       team_id: team,
       team_name: fresh.teamName,
       progress_index: 0,
@@ -1208,7 +1208,7 @@ async function adminResetTeam(){
       last_updated_at: fresh.lastUpdatedAt
     }, { onConflict: "team_id" });
 
-    await supabaseClient.from("leaderboard").upsert({
+    await supabaseClient.from("leaderboard_game2").upsert({
       team_id: team,
       team_name: fresh.teamName,
       found: 0,
@@ -1267,7 +1267,7 @@ async function adminGrantNext(){
   localStorage.setItem(leaderboardKey(), JSON.stringify(localBoard));
 
   if (supabaseReady){
-    await supabaseClient.from("team_progress").upsert({
+    await supabaseClient.from("team_progress_game2").upsert({
       team_id: team,
       team_name: targetState.teamName,
       progress_index: targetState.progressIndex,
@@ -1280,7 +1280,7 @@ async function adminGrantNext(){
       last_updated_at: targetState.lastUpdatedAt
     }, { onConflict: "team_id" });
 
-    await supabaseClient.from("leaderboard").upsert({
+    await supabaseClient.from("leaderboard_game2").upsert({
       team_id: team,
       team_name: targetState.teamName,
       found: targetState.completed.length,

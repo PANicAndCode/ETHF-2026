@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Easter Chore Hunt</title>
+  <title>Nana Needs Help! - Game 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="teamGate" class="overlay">
     <div class="gateCard">
       <div class="badge bigBadge">🐣 Pick your team</div>
-      <h1 class="gateTitle">Welcome to the Easter Chore Hunt</h1>
+      <h1 class="gateTitle">Welcome to Nana Needs Help!</h1>
       <p class="gateCopy">Choose your team and start the hunt. If a team name has already been claimed, it will be locked.</p>
       <div class="teamButtons" id="gateTeamButtons"></div>
       <div class="spacer"></div>
@@ -69,7 +69,7 @@
 
   <header class="topbar">
     <div class="topbarInner">
-      <div class="brand"><button type="button" id="rabbitTrigger" class="rabbitBtn" aria-label="Admin access">🐰</button><span>Easter Chore Hunt</span></div>
+      <div class="brand"><button type="button" id="rabbitTrigger" class="rabbitBtn" aria-label="Admin access">🐰</button><span>Nana Needs Help!</span></div>
       <nav class="menu">
         <button class="menuBtn active" data-page="choresPage">Chores</button>
         <button class="menuBtn" data-page="scanPage">Scanner</button>
@@ -80,8 +80,8 @@
 
   <main class="container">
     <section class="hero card">
-      <div class="badge">🌷 Easter adventure</div>
-      <h1>Find eggs. Unlock chores. Beat the other teams.</h1>
+      <div class="badge">🧺 Nana needs help!</div>
+      <h1>Work through Nana's chore list before the other teams.</h1>
       <p>Your first chore appears right away. Each egg unlocks only the next chore for your team.</p>
       <div class="kpis">
         <div class="kpi kpiGreen">
@@ -112,14 +112,14 @@
       <div class="mainGrid" id="mapPageGrid">
         <div class="card" id="mapCard">
           <div class="sectionTitleRow">
-            <h2>Chore list</h2>
+            <h2>Nana needs help!</h2>
             <div class="teamPill" id="teamDisplay"></div>
           </div>
           <p>Locations stay hidden for the current chore. Completed chores reveal where that stop was found.</p>
           <div class="list" id="choreList"></div>
         </div>
         <div class="sideCol">
-          <div class="card panel">
+          <div class="card panel hidden" id="hintStationCard">
             <div class="sectionTitleRow">
               <h2>Hint station</h2>
               <div class="hintActionRow">
