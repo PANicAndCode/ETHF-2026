@@ -199,16 +199,15 @@ function finishPlacementForTeam(team = teamKey){
 }
 
 function placementPrize(place){
-  if (place === 1) return 40;
+  if (place === 1) return 50;
   if (place === 2) return 20;
   if (place === 3) return 10;
-  if (place === 4 || place === 5) return 6;
   return 0;
 }
 
 function placementPrizeText(place){
   const amount = placementPrize(place);
-  return `$${amount}`;
+  return amount > 0 ? `$${amount}` : "no cash prize";
 }
 
 function finalEggInfo(){
@@ -721,7 +720,7 @@ function renderFinalEggCard(){
     card.classList.remove("hidden");
     badge.textContent = "🏆 Victory locked";
     title.textContent = `Your team finished in ${placementLabel(place)} and won ${prizeText}.`;
-    copy.textContent = `Get ${prizeText} from Ma. Your placement is locked in and the leaderboard has been updated.`;
+    copy.textContent = `Get ${prizeText} from Nana. Your placement is locked in and the leaderboard has been updated.`;
     viewBtn.classList.remove("hidden");
     return;
   }
@@ -751,8 +750,8 @@ function showVictoryOverlay(){
   if (el("victoryPlacement")) el("victoryPlacement").textContent = `Your team came in ${placementLabel(place)} and won ${prizeText}.`;
   if (el("victoryRankWord")) el("victoryRankWord").textContent = placementLabel(place).replace(/^./, char => char.toUpperCase());
   if (el("victoryMeta")) el("victoryMeta").textContent = place <= 3
-    ? `You won ${prizeText}. Get it from Ma. The final egg was at ${finalEggInfo().location}. The leaderboard has been updated and your team earned the ${place === 1 ? "gold" : place === 2 ? "silver" : "bronze"} trophy.`
-    : `You won ${prizeText}. Get it from Ma. The final egg was at ${finalEggInfo().location}. The leaderboard has been updated with your final placement.`;
+    ? `You won ${prizeText}. Get it from Nana. The final egg was at ${finalEggInfo().location}. The leaderboard has been updated and your team earned the ${place === 1 ? "gold" : place === 2 ? "silver" : "bronze"} trophy.`
+    : `You won ${prizeText}. Get it from Nana. The final egg was at ${finalEggInfo().location}. The leaderboard has been updated with your final placement.`;
   const overlay = el("victoryOverlay");
   if (overlay) overlay.classList.remove("hidden");
 }
